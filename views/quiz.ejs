@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Trivia App</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+<body>
+    <div class="container">
+    <h1>
+        Question <%= questionIndex + 1 %> of <%= totalQuestions %>
+    </h1>
+    <p class="q_title">
+        <%= question.question %>
+    </p>
+    <form action="/answer" method="POST">
+
+        <% question.incorrect_answers.forEach(answer=> { %>
+            <label>
+                <input type="radio" name="answer" value="<%= answer %>" required>
+                <%= answer %>
+            </label><br>
+        <% }); %>
+
+        <label>
+            <input type="radio" name="answer" value="<%= question.correct_answer %>" required>
+            <%= question.correct_answer %>
+        </label><br>
+
+        <button type="submit">Submit Answer</button>
+    </form>
+    </div>
+</body>
+
+</html>
